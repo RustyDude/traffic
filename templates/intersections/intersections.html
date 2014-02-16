@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+table,th,td
+{
+border:1px solid black;
+border-collapse:collapse;
+}
+th,td
+{
+padding:5px;
+}
+</style>
+</head>
+
+<body>
+<table style="width:300px">
+{% if intersection_list %}
+<tr>
+	<td>ID</td>
+	<td>Description</td>
+	<td>Location</td>
+	<td>No. of Equipment</td>
+	<td>No. of Accidents</td>
+	<td>Remarks</td>
+<tr>
+{% for i in intersection_list %}
+<tr>
+	<td>{{i.id}}</td>
+	<td>{{i.description}}</td>
+	<td>{{i.location}}</td>
+	<td>{{i.equipment}}</td>
+	<td>{{i.accidentNum}}</td>
+	<td>{{i.remarks}}</td>
+<tr>
+{% endfor %}
+</table>
+{% endif %}
+
+</body>
+
+</html>

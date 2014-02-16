@@ -10,8 +10,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+from os.path import join
 
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -52,9 +54,9 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'traffic.urls'
 
 TEMPLATE_DIRS = (
-	os.path.join(BASE_DIR, "templates")
-
-
+	join(BASE_DIR, "templates")
+	#"D:\Dev Tools\OS\traffic\templates",
+	#os.path.join(PROJECT_ROOT, 'templates'),
 )
 WSGI_APPLICATION = 'traffic.wsgi.application'
 
@@ -87,3 +89,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    #'django.template.loaders.app_directories.load_template_source',
+#     'django.template.loaders.eggs.Loader',
+)
