@@ -9,6 +9,9 @@ class Intersection(models.Model):
 	
 	def __unicode__(self):
 		return u'%s' % self.description
+
+	def get_absolute_url(self):
+		return reverse('intersection_edit', kwargs={'pk': self.pk})
 	
 class Road(models.Model):
 	description = models.CharField(max_length=200)

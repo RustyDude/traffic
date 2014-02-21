@@ -6,6 +6,7 @@
 
 <body>
 <table style="width:300px">
+
 {% if intersection_list %}
 <tr>
 	<td>ID</td>
@@ -23,11 +24,13 @@
 	<td>{{i.equipment}}</td>
 	<td>{{i.accidentNum}}</td>
 	<td>{{i.remarks}}</td>
+	<td><input type="checkbox" name="selection" value="{{i.id}}"></td>
 <tr>
 {% endfor %}
 </table>
 {% endif %}
-
+<button onclick="location.href='/intersectionindex'"; id=addIntersection >Add Intersection</button>
+<button onclick="location.href='/intersections'"; id=delete >Delete Intersection</button>
 </body>
 
 {% endblock content %}

@@ -4,6 +4,9 @@ from intersections.models import *
 from django.template import Context, loader, RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
+from intersections.forms import *
+
 # Create your views here.
 
 def login_user(request):
@@ -62,3 +65,78 @@ def devices(request):
 
 def homepage(request):
 	return HttpResponseRedirect('/login/')
+
+def intersectionindex(request):
+	if request.method == 'POST':
+    		form = IntersectionsForm(request.POST)
+    		if form.is_valid():
+            		form.save()
+        		return redirect(intersectionindex)
+    	intersections = Intersection.objects.all().order_by('-timestamp')[:10]
+    	form = IntersectionsForm()
+    	context = {
+        'intersections': intersections,
+        'form': form,
+   		 }
+    	return render(request, 'intersections/intersectionindex.html', context)
+
+
+def deviceindex(request):
+	if request.method == 'POST':
+    		form = DevicesForm(request.POST)
+    		if form.is_valid():
+            		form.save()
+        		return redirect(deviceindex)
+    	devices = Device.objects.all().order_by('-timestamp')[:10]
+    	form = DevicesForm()
+    	context = {
+        'devices': devices,
+        'form': form,
+   		 }
+    	return render(request, 'intersections/deviceindex.html', context)
+
+
+
+def accidentindex(request):
+	if request.method == 'POST':
+    		form = AccidentsForm(request.POST)
+    		if form.is_valid():
+            		form.save()
+        		return redirect(accidentindex)
+    	accidents = Accident.objects.all().order_by('-timestamp')[:10]
+    	form = AccidentsForm()
+    	context = {
+        'accidents': accidents,
+        'form': form,
+   		 }
+    	return render(request, 'intersections/accidentindex.html', context)
+
+
+def roadindex(request):
+	if request.method == 'POST':
+    		form = RoadsForm(request.POST)
+    		if form.is_valid():
+            		form.save()
+        		return redirect(roadindex)
+    	roads = Road.objects.all().order_by('-timestamp')[:10]
+    	form = RoadsForm()
+    	context = {
+        'roads': roads,
+        'form': form,
+   		 }
+    	return render(request, 'intersections/roadindex.html', context)
+
+def handle(request):
+	if request.method == 'POST':
+        	form = forms.IntersectionForm(request.POST)
+        	if form.is_valid():
+            		form.save()
+        		return redirect(index)
+
+        if request.POST.get('delete'):
+        	item = request.POST.getlist('selection')
+        	item.delete()
+        return render(request, 'intersections.html', context)		
+
+
+

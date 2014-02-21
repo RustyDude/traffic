@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<link rel="stylesheet"  type="text/css" href="/static/css/tables.css">
+</head>
+
+<body>
+{% block index_list %}
+    {% if user %}
+    <div id="Create">
+        <form method="post">
+        {% csrf_token %}	
+        <br><h3>Road</h3><br>
+        {{ form.as_p }}
+        <p><button onclick="location.href = '/road'"; id="Save">Save</button>
+        </form>
+    </div>
+    {% endif %}
+{% endblock %}
+
+
+</body>
+
+{% endblock content %}
