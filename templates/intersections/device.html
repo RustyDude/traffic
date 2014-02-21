@@ -1,27 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 <head>
-<link rel="stylesheet"  type="text/css" href="/static/css/tables.css">
+<link rel="stylesheet"  type="text/css" href="/static/css/tables.css"">
 </head>
 
 <body>
 <table style="width:300px">
-{% if intersection_list %}
+{% if device_list %}
 <tr>
 	<td>ID</td>
 	<td>Description</td>
-	<td>Location</td>
-	<td>No. of Equipment</td>
-	<td>No. of Accidents</td>
+	<td>Status</td>
+	<td>Road ID</td>
 	<td>Remarks</td>
 <tr>
-{% for i in intersection_list %}
+{% for i in device_list %}
 <tr>
 	<td>{{i.id}}</td>
 	<td>{{i.description}}</td>
-	<td>{{i.location}}</td>
-	<td>{{i.equipment}}</td>
-	<td>{{i.accidentNum}}</td>
+	<td>{{i.status}}</td>
+	<td>{{i.roadID}}</td>
 	<td>{{i.remarks}}</td>
 <tr>
 {% endfor %}
@@ -29,5 +27,4 @@
 {% endif %}
 
 </body>
-
 {% endblock content %}
